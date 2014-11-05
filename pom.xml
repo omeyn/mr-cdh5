@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.gbif</groupId>
+  <artifactId>mr-cdh5</artifactId>
+  <packaging>pom</packaging>
+  <version>0.1-SNAPSHOT</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <hadoop.version>2.5.0-cdh5.2.0</hadoop.version>
+    <hbase.version>0.98.6-cdh5.2.0</hbase.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>gbif-all</id>
+      <url>http://repository.gbif.org/content/groups/gbif</url>
+    </repository>
+    <repository>
+      <id>cloudera</id>
+      <url>https://repository.cloudera.com/content/repositories/releases/</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-yarn-client</artifactId>
+      <version>${hadoop.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.hbase</groupId>
+      <artifactId>hbase-client</artifactId>
+      <version>${hbase.version}</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>uat</id>
+      <properties>
+        <!-- cluster -->
+        <!--<hadoop.jobtracker>c1n10.gbif.org:8021</hadoop.jobtracker>-->
+        <!--<zookeeper.quorum>c1n10.gbif.org:2181,c1n9.gbif.org:2181,c1n8.gbif.org:2181</zookeeper.quorum>-->
+        <!--<hdfs.namenode>hdfs://c1n8.gbif.org:8020</hdfs.namenode>-->
+
+        <!--<ganglia.server>130.226.238.237</ganglia.server>-->
+        <!--<ganglia.port>8649</ganglia.port>-->
+        <!--<datacube.version>1.2.4-GIT-20130903</datacube.version>-->
+        <!--<hadoop-noncore.version>2.0.0-cdh4.2.1</hadoop-noncore.version>-->
+        <!--<hadoop-core.version>2.0.0-mr1-cdh4.2.1</hadoop-core.version>-->
+        <!--<hbase.version>0.94.2-cdh4.2.1</hbase.version>-->
+      </properties>
+    </profile>
+
+    <profile>
+      <id>dev</id>
+      <properties>
+        <!-- actually points to yarn ResourceManager -->
+        <hadoop.jobtracker>c1n3.gbif.org:8032</hadoop.jobtracker>
+        <zookeeper.quorum>c1n1.gbif.org:2181,c1n2.gbif.org:2181,c1n3.gbif.org:2181</zookeeper.quorum>
+        <hdfs.namenode>hdfs://c1n1.gbif.org:8020</hdfs.namenode>
+        <hadoop.version>2.5.0-cdh5.2.0</hadoop.version>
+        <hbase.version>0.98.6-cdh5.2.0</hbase.version>
+      </properties>
+    </profile>
+  </profiles>
+
+</project>
+
