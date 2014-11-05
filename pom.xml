@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.gbif</groupId>
   <artifactId>mr-cdh5</artifactId>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
   <version>0.1-SNAPSHOT</version>
 
   <properties>
@@ -72,12 +72,40 @@
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-client</artifactId>
       <version>${hadoop.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.hbase</groupId>
       <artifactId>hbase-client</artifactId>
       <version>${hbase.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.hbase</groupId>
+          <artifactId>hbase-protocol</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.apache.hbase</groupId>-->
+      <!--<artifactId>hbase-protocol</artifactId>-->
+      <!--<version>${hbase.version}</version>-->
+      <!--&lt;!&ndash;<scope>runtime</scope>&ndash;&gt;-->
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<groupId>log4j</groupId>-->
+          <!--<artifactId>log4j</artifactId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.apache.hbase</groupId>
       <artifactId>hbase-server</artifactId>
@@ -87,8 +115,21 @@
           <groupId>org.apache.hadoop</groupId>
           <artifactId>hadoop-core</artifactId>
         </exclusion>
+        <!-- ignore logging implementations -->
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+        <!-- this brings in test classifier stuff -->
+        <exclusion>
+          <groupId>org.apache.hadoop</groupId>
+          <artifactId>hadoop-hdfs</artifactId>
+        </exclusion>
       </exclusions>
-
     </dependency>
   </dependencies>
 
@@ -115,6 +156,7 @@
       <properties>
         <!-- actually points to yarn ResourceManager -->
         <hadoop.jobtracker>c1n3.gbif.org:8032</hadoop.jobtracker>
+        <yarn.resourcemanager>c1n3.gbif.org:8032</yarn.resourcemanager>
         <zookeeper.quorum>c1n1.gbif.org:2181,c1n2.gbif.org:2181,c1n3.gbif.org:2181</zookeeper.quorum>
         <hdfs.namenode>hdfs://c1n1.gbif.org:8020</hdfs.namenode>
         <hadoop.version>2.5.0-cdh5.2.0</hadoop.version>
