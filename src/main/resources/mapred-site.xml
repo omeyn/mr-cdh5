@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
-<!-- Put site-specific property overrides in this file. -->
-
 <configuration>
   <property>
     <name>mapreduce.framework.name</name>
@@ -11,20 +9,20 @@
 
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>c1n3.gbif.org</value>
+    <value>${yarn.rm.machine}.gbif.org</value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>c1n3.gbif.org:8025</value>
+    <value>${yarn.rm.machine}.gbif.org:8025</value>
   </property>
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value>c1n3.gbif.org:8030</value>
+    <value>${yarn.rm.machine}.gbif.org:8030</value>
   </property>
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value>c1n3.gbif.org:8032</value>
+    <value>${yarn.rm.machine}.gbif.org:8032</value>
   </property>
 
   <property>

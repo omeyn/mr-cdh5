@@ -49,8 +49,8 @@ public class SciNameCounter {
     job.setJarByClass(SciNameCounter.class);
     job.setOutputFormatClass(NullOutputFormat.class);
     job.setNumReduceTasks(0);
-    job.getConfiguration().set("mapred.map.tasks.speculative.execution", "false");
-    job.getConfiguration().set("mapred.reduce.tasks.speculative.execution", "false");
+    job.getConfiguration().set("mapreduce.map.speculative", "false");
+    job.getConfiguration().set("mapreduce.reduce.speculative", "false");
 
     Scan scan = buildScan(sciName);
 

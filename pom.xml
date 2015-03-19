@@ -11,6 +11,9 @@
 
     <hadoop.version>2.5.0-cdh5.2.0</hadoop.version>
     <hbase.version>0.98.6-cdh5.2.0</hbase.version>
+
+    <!-- GBIF -->
+    <occurrence.version>0.28-SNAPSHOT</occurrence.version>
   </properties>
 
   <build>
@@ -68,6 +71,16 @@
   </repositories>
 
   <dependencies>
+    <!-- GBIF -->
+    <dependency>
+      <groupId>org.gbif.occurrence</groupId>
+      <artifactId>occurrence-persistence</artifactId>
+      <version>${occurrence.version}</version>
+    </dependency>
+
+    <!-- END GBIF -->
+
+
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-client</artifactId>
@@ -135,19 +148,15 @@
 
   <profiles>
     <profile>
-      <id>uat</id>
+      <id>prod</id>
       <properties>
-        <!-- cluster -->
-        <!--<hadoop.jobtracker>c1n10.gbif.org:8021</hadoop.jobtracker>-->
-        <!--<zookeeper.quorum>c1n10.gbif.org:2181,c1n9.gbif.org:2181,c1n8.gbif.org:2181</zookeeper.quorum>-->
-        <!--<hdfs.namenode>hdfs://c1n8.gbif.org:8020</hdfs.namenode>-->
-
-        <!--<ganglia.server>130.226.238.237</ganglia.server>-->
-        <!--<ganglia.port>8649</ganglia.port>-->
-        <!--<datacube.version>1.2.4-GIT-20130903</datacube.version>-->
-        <!--<hadoop-noncore.version>2.0.0-cdh4.2.1</hadoop-noncore.version>-->
-        <!--<hadoop-core.version>2.0.0-mr1-cdh4.2.1</hadoop-core.version>-->
-        <!--<hbase.version>0.94.2-cdh4.2.1</hbase.version>-->
+        <hadoop.jobtracker>prodmaster3-vh.gbif.org:8032</hadoop.jobtracker>
+        <yarn.rm.machine>prodmaster3-vh</yarn.rm.machine>
+        <yarn.resourcemanager>prodmaster3-vh.gbif.org:8032</yarn.resourcemanager>
+        <zookeeper.quorum>zk1.gbif.org:2181,zk2.gbif.org:2181,zk3.gbif.org:2181</zookeeper.quorum>
+        <hdfs.namenode>hdfs://prodmaster1-vh.gbif.org:8020</hdfs.namenode>
+        <hadoop.version>2.5.0-cdh5.2.0</hadoop.version>
+        <hbase.version>0.98.6-cdh5.2.0</hbase.version>
       </properties>
     </profile>
 
@@ -156,6 +165,7 @@
       <properties>
         <!-- actually points to yarn ResourceManager -->
         <hadoop.jobtracker>c1n3.gbif.org:8032</hadoop.jobtracker>
+        <yarn.rm.machine>c1n3</yarn.rm.machine>
         <yarn.resourcemanager>c1n3.gbif.org:8032</yarn.resourcemanager>
         <zookeeper.quorum>c1n1.gbif.org:2181,c1n2.gbif.org:2181,c1n3.gbif.org:2181</zookeeper.quorum>
         <hdfs.namenode>hdfs://c1n1.gbif.org:8020</hdfs.namenode>
