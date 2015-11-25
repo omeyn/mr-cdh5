@@ -9,11 +9,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <hadoop.version>2.5.0-cdh5.2.0</hadoop.version>
-    <hbase.version>0.98.6-cdh5.2.0</hbase.version>
+    <hadoop.version>2.6.0-cdh5.4.2</hadoop.version>
+    <hbase.version>1.0.0-cdh5.4.2</hbase.version>
 
     <!-- GBIF -->
-    <occurrence.version>0.28-SNAPSHOT</occurrence.version>
+    <occurrence.version>0.35</occurrence.version>
   </properties>
 
   <build>
@@ -155,8 +155,8 @@
         <yarn.resourcemanager>prodmaster3-vh.gbif.org:8032</yarn.resourcemanager>
         <zookeeper.quorum>zk1.gbif.org:2181,zk2.gbif.org:2181,zk3.gbif.org:2181</zookeeper.quorum>
         <hdfs.namenode>hdfs://prodmaster1-vh.gbif.org:8020</hdfs.namenode>
-        <hadoop.version>2.5.0-cdh5.2.0</hadoop.version>
-        <hbase.version>0.98.6-cdh5.2.0</hbase.version>
+        <hadoop.version>2.6.0-cdh5.4.2</hadoop.version>
+        <hbase.version>1.0.0-cdh5.4.2</hbase.version>
       </properties>
     </profile>
 
@@ -169,8 +169,8 @@
         <yarn.resourcemanager>c1n3.gbif.org:8032</yarn.resourcemanager>
         <zookeeper.quorum>c1n1.gbif.org:2181,c1n2.gbif.org:2181,c1n3.gbif.org:2181</zookeeper.quorum>
         <hdfs.namenode>hdfs://c1n1.gbif.org:8020</hdfs.namenode>
-        <hadoop.version>2.5.0-cdh5.2.0</hadoop.version>
-        <hbase.version>0.98.6-cdh5.2.0</hbase.version>
+        <hadoop.version>2.6.0-cdh5.4.2</hadoop.version>
+        <hbase.version>1.0.0-cdh5.4.2</hbase.version>
       </properties>
     </profile>
   </profiles>

@@ -27,8 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Populates the occurrence lookup table with lookups for each identifier found in the scan. Third parameter is
- * optional and allows for scoping within a dataset (if absent does entire table).
+ * Populates the occurrence lookup table with lookups for each identifier found in the scan. Both tables need to exist!
+ * Third parameter is optional and allows for scoping within a dataset (if absent does entire table).
  */
 public class LookupPopulator {
 
@@ -104,7 +104,7 @@ public class LookupPopulator {
 
   public static void main(String[] args) throws Exception {
     if (args.length < 2) {
-      System.out.println("Usage: TripletPopulator <occurrenceTable> <lookupTable> <optional datasetKey>");
+      System.out.println("Usage: LookupPopulator <occurrenceTable> <lookupTable> <optional datasetKey>");
       System.exit(1);
     }
     String occurrenceTable = args[0];
@@ -115,7 +115,7 @@ public class LookupPopulator {
     conf.set("hbase.regionserver.lease.period", "600000");
     conf.set("hbase.rpc.timeout", "600000");
 
-    Job job = new Job(conf, "TripletPopulator - " + occurrenceTable);
+    Job job = new Job(conf, "LookupPopulator - " + occurrenceTable);
     job.setJarByClass(LookupPopulator.class);
     Scan scan = new Scan();
     scan.addColumn(OCC_CF, DK_COL);
