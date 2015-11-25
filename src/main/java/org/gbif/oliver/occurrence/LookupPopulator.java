@@ -109,7 +109,7 @@ public class LookupPopulator {
     }
     String occurrenceTable = args[0];
     String lookupTable = args[1];
-    String datasetKey = args[2];
+    String datasetKey = args.length == 3 ? args[2] : null;
     Configuration conf = HBaseConfiguration.create();
     conf.set("hbase.client.scanner.timeout.period", "600000");
     conf.set("hbase.regionserver.lease.period", "600000");
